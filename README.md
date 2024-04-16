@@ -4,7 +4,6 @@ This project is a Java GUI application focused on generating sales and purchase 
 ## Features
 - **Login Interface:** Users can log in using a predefined username and password.
 - **Navigation:** Users can switch between frames for sales and purchase reports.
-- **Limited Report Generation:** Users can navigate through frames, but actual report generation is not fully functional.
 
 ## Technologies Used
 - Java Swing: for building the graphical user interface.
