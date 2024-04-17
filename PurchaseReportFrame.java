@@ -56,7 +56,6 @@ public class PurchaseReportFrame extends JFrame {
         searchItemPanel.add(searchItemLabel);
         searchItemPanel.add(searchItemTextField);
 
-        // Tambahkan label untuk Nama / ID Vendor
         JPanel searchVendorPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JLabel searchVendorLabel = new JLabel("Nama / ID Vendor:");
         JTextField searchVendorTextField = new JTextField(10);
@@ -74,17 +73,15 @@ public class PurchaseReportFrame extends JFrame {
         // Panel judul dan tanggal
         JPanel titleDatePanel = new JPanel(new BorderLayout());
 
-        // Tambahkan judul untuk tabel
         JLabel tableTitleLabel = new JLabel("Laporan Pembelian");
         tableTitleLabel.setFont(new Font("Arial", Font.BOLD, 16));
-        tableTitleLabel.setHorizontalAlignment(SwingConstants.CENTER); // Atur agar judul tabel berada di tengah
+        tableTitleLabel.setHorizontalAlignment(SwingConstants.CENTER); 
         titleDatePanel.add(tableTitleLabel, BorderLayout.NORTH);
 
-        // Tambahkan label untuk rentang tanggal
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         String currentDate = dateFormat.format(new Date());
         JLabel dateRangeLabel = new JLabel("Tanggal " + currentDate + " s.d. " + currentDate);
-        dateRangeLabel.setHorizontalAlignment(SwingConstants.CENTER); // Atur agar tanggal berada di tengah
+        dateRangeLabel.setHorizontalAlignment(SwingConstants.CENTER); 
         titleDatePanel.add(dateRangeLabel, BorderLayout.CENTER);
 
         // Panel untuk tombol Generate dan Reset
@@ -92,27 +89,23 @@ public class PurchaseReportFrame extends JFrame {
         JButton generateButton = new JButton("Generate");
         JButton resetButton = new JButton("Reset");
 
-        // Tambahkan tombol Print
         JButton printButton = new JButton("Print");
         buttonPanel.add(generateButton);
         buttonPanel.add(resetButton);
         buttonPanel.add(printButton);
 
-        // Atur tinggi top panel menjadi 150px
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.Y_AXIS));
-        topPanel.setPreferredSize(new Dimension(1300, 200)); // Atur tinggi top panel menjadi 150px
+        topPanel.setPreferredSize(new Dimension(1300, 200)); 
         topPanel.add(inputPanel);
         topPanel.add(buttonPanel);
         topPanel.add(titleDatePanel);
 
-        // Menambahkan panel top ke dalam contentPanel
         contentPanel.add(topPanel, BorderLayout.NORTH);
 
         // Panel untuk tabel laporan penjualan
         JPanel tablePanel = new JPanel(new BorderLayout());
 
-        // Tambahkan tabel dengan data dummy
         String[] columnNames = {"Tgl", "ID Transaksi", "Nama Barang", "Nama Vendor", "Total"};
         Object[][] data = {
                 {"01-04-2024", "ID001", "Chocolatos", "Nikolas", "Rp100.000"},
@@ -126,21 +119,17 @@ public class PurchaseReportFrame extends JFrame {
         table.setFont(new Font("Arial", Font.PLAIN, 12));
         table.setRowHeight(30);
 
-        // Tambahkan renderer agar konten sel-sel tabel rata tengah
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         table.setDefaultRenderer(Object.class, centerRenderer);
 
-        // Atur padding pada sel tabel
         table.setIntercellSpacing(new Dimension(15, 15));
 
         JScrollPane scrollPane = new JScrollPane(table);
         tablePanel.add(scrollPane, BorderLayout.CENTER);
 
-        // Menambahkan panel tabel ke dalam contentPanel
         contentPanel.add(tablePanel, BorderLayout.CENTER);
 
-        // Menambahkan contentPanel ke dalam mainPanel
         mainPanel.add(contentPanel, BorderLayout.CENTER);
 
         add(mainPanel);

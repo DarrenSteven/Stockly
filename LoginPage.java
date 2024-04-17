@@ -10,10 +10,10 @@ public class LoginPage extends JFrame {
         setTitle("Stockly - Sign In");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(350, 250);
-        setLocationRelativeTo(null); // Center the frame on the screen
+        setLocationRelativeTo(null); 
 
         JPanel panel = new JPanel();
-        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Add padding
+        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); 
 
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
@@ -21,14 +21,14 @@ public class LoginPage extends JFrame {
         titleLabel.setFont(new Font("Arial", Font.BOLD, 18));
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(titleLabel);
-        panel.add(Box.createRigidArea(new Dimension(0, 20))); // Add vertical gap
+        panel.add(Box.createRigidArea(new Dimension(0, 20))); 
 
         JLabel usernameLabel = new JLabel("Username:");
         usernameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(usernameLabel);
 
         usernameField = new JTextField(15);
-        usernameField.setMaximumSize(new Dimension(250, 30)); // Set maximum size
+        usernameField.setMaximumSize(new Dimension(250, 30)); 
         usernameField.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(usernameField);
 
@@ -37,26 +37,21 @@ public class LoginPage extends JFrame {
         panel.add(passwordLabel);
 
         passwordField = new JPasswordField(15);
-        passwordField.setMaximumSize(new Dimension(250, 30)); // Set maximum size
+        passwordField.setMaximumSize(new Dimension(250, 30)); 
         passwordField.setAlignmentX(Component.CENTER_ALIGNMENT);
         panel.add(passwordField);
 
-        panel.add(Box.createRigidArea(new Dimension(0, 20))); // Add vertical gap
+        panel.add(Box.createRigidArea(new Dimension(0, 20))); 
 
         JButton loginButton = new JButton("Login");
         loginButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Handle login logic here
                 String username = usernameField.getText();
                 String password = new String(passwordField.getPassword());
-
-                // Dummy check for demonstration
                 if (username.equals("admin") && password.equals("password")) {
                     JOptionPane.showMessageDialog(null, "Login successful!");
-                    // Redirect to StockPages
                     new StockPage();
-                    // Close the login frame
                     dispose();
                 } else {
                     JOptionPane.showMessageDialog(null, "Invalid username or password. Please try again.");

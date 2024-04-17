@@ -5,16 +5,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Sidebar extends JPanel {
-    private JFrame currentPage; // Menyimpan referensi ke halaman saat ini
+    private JFrame currentPage; 
 
     public Sidebar() {
-        setPreferredSize(new Dimension(250, getHeight())); // Set sidebar width to 250 pixels
+        setPreferredSize(new Dimension(250, getHeight())); 
         setBackground(Color.LIGHT_GRAY);
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        // Logo and Stockly text
-        JLabel logoLabel = new JLabel(new ImageIcon("logo.png")); // Change "logo.png" to your logo file path
+        ImageIcon logoIcon = new ImageIcon("assets/stockly.png");
+        Image logoImage = logoIcon.getImage();
+        Image scaledLogoImage = logoImage.getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+        ImageIcon scaledLogoIcon = new ImageIcon(scaledLogoImage);
+        JLabel logoLabel = new JLabel(scaledLogoIcon);
         JLabel stocklyLabel = new JLabel("Stockly");
         stocklyLabel.setFont(new Font("Arial", Font.BOLD, 24));
         JPanel logoPanel = new JPanel();
@@ -23,23 +26,20 @@ public class Sidebar extends JPanel {
         logoPanel.add(logoLabel);
         logoPanel.add(stocklyLabel);
 
-        // Navigation buttons
         JButton[] navigationButtons = new JButton[6];
         String[] buttonLabels = {"List Produk", "List Pembelian", "List Penjualan", "Laporan Penjualan", "Laporan Pembelian", "Kartu Stock"};
+        ImageIcon[] buttonIcons = {new ImageIcon("assets/list_produk.png"), new ImageIcon("assets/pembelian.png"), new ImageIcon("assets/penjualan.png"), new ImageIcon("assets/laporan_jual.png"), new ImageIcon("assets/laporan_beli.png"), new ImageIcon("assets/stock.png")};
 
         JPanel navigationPanel = new JPanel();
         navigationPanel.setBackground(Color.WHITE);
         navigationPanel.setLayout(new GridLayout(6, 1));
         navigationPanel.setPreferredSize(new Dimension(250, 300));
 
-        // ActionListener for navigation buttons
         ActionListener navigationListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JButton button = (JButton) e.getSource();
                 String buttonText = button.getText();
-
-                // Redirect to corresponding pages
                 switch (buttonText) {
                     case "List Produk":
                         new StockPage().setVisible(true);
@@ -59,40 +59,41 @@ public class Sidebar extends JPanel {
                     case "Laporan Penjualan":
                         new SalesReportFrame().setVisible(true);
                         break;
-                    // Add cases for other buttons if needed
                 }
                 
-                // Tutup frame yang sebelumnya terbuka
                 SwingUtilities.getWindowAncestor(Sidebar.this).dispose();
             }
         };
 
         for (int i = 0; i < 6; i++) {
-            navigationButtons[i] = new JButton(buttonLabels[i]);
+            navigationButtons[i] = new JButton(buttonLabels[i], buttonIcons[i]);
             navigationButtons[i].setFont(new Font("Arial", Font.PLAIN, 14));
-            navigationButtons[i].addActionListener(navigationListener); // Add ActionListener to each button
+            navigationButtons[i].setHorizontalAlignment(SwingConstants.LEFT);
+            navigationButtons[i].setIconTextGap(10); 
+            navigationButtons[i].addActionListener(navigationListener); 
             navigationPanel.add(navigationButtons[i]);
         }
 
-        // Logout button
-        JButton logoutButton = new JButton("Logout");
+        ImageIcon logoutIcon = new ImageIcon("assets/logout.png");
+        Image scaledLogoutImage = logoutIcon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH); 
+        ImageIcon scaledLogoutIcon = new ImageIcon(scaledLogoutImage);
+        JButton logoutButton = new JButton("Logout", scaledLogoutIcon);
         logoutButton.setFont(new Font("Arial", Font.BOLD, 16));
         logoutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Close all frames and open the login frame again
                 for (Window window : Window.getWindows()) {
                     window.dispose();
                 }
-                new LoginPage(); // Change to the name of your login page class
+                new LoginPage(); 
             }
         });
+
         JPanel logoutPanel = new JPanel();
         logoutPanel.setBackground(Color.WHITE);
         logoutPanel.setPreferredSize(new Dimension(250, 50));
         logoutPanel.add(logoutButton);
 
-        // Add components to sidebar
         add(logoPanel);
         add(navigationPanel);
         add(logoutPanel);

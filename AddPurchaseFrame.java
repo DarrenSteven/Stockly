@@ -10,7 +10,6 @@ public class AddPurchaseFrame extends JFrame {
         setSize(1300, 850);
         setLocationRelativeTo(null);
 
-        // Panel utama untuk konten dan sidebar
         JPanel mainPanel = new JPanel(new BorderLayout());
         mainPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
@@ -28,27 +27,26 @@ public class AddPurchaseFrame extends JFrame {
 
         // Panel judul
         JPanel titlePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        titlePanel.setBorder(new EmptyBorder(0, 0, 10, 0)); // Tambahkan padding di bagian bawah
+        titlePanel.setBorder(new EmptyBorder(0, 0, 10, 0));
         JLabel titleLabel = new JLabel("Tambah Pembelian");
         titleLabel.setFont(new Font("Arial", Font.BOLD, 20));
         titlePanel.add(titleLabel);
         inputPanel.add(titlePanel, BorderLayout.NORTH);
 
         // Panel untuk section 1 dan section 2
-        JPanel sectionsPanel = new JPanel(new GridLayout(2, 1, 0, 20)); // Ubah menjadi 2 baris, 1 kolom dengan jarak 20 piksel
-        sectionsPanel.setBorder(new CompoundBorder(new LineBorder(Color.BLACK), new EmptyBorder(10, 10, 10, 10))); // Tambahkan border hitam dan padding
+        JPanel sectionsPanel = new JPanel(new GridLayout(2, 1, 0, 20)); 
+        sectionsPanel.setBorder(new CompoundBorder(new LineBorder(Color.BLACK), new EmptyBorder(10, 10, 10, 10))); 
 
         // Section 1: Tanggal, ID Transaksi, dan Supplier
-        JPanel dateIdSupplierPanel = new JPanel(new GridLayout(3, 2, 5, 5)); // Ubah menjadi 3 baris, 2 kolom
+        JPanel dateIdSupplierPanel = new JPanel(new GridLayout(3, 2, 5, 5)); 
 
         JLabel dateLabel = new JLabel("Tanggal:");
         JTextField dateField = new JTextField(15);
         JLabel idLabel = new JLabel("ID Transaksi:");
         JTextField idField = new JTextField(15);
         JLabel supplierLabel = new JLabel("Supplier:");
-        JComboBox<String> supplierComboBox = new JComboBox<>(new String[]{"Steven", "Darren", "William"}); // Dropdown menu untuk supplier
+        JComboBox<String> supplierComboBox = new JComboBox<>(new String[]{"Steven", "Darren", "William"}); 
 
-        // Tambahkan elemen ke dalam panel
         dateIdSupplierPanel.add(dateLabel);
         dateIdSupplierPanel.add(dateField);
         dateIdSupplierPanel.add(idLabel);
@@ -62,12 +60,12 @@ public class AddPurchaseFrame extends JFrame {
         JPanel itemPanel = new JPanel(new GridLayout(3, 2, 5, 5));
 
         JLabel itemLabel = new JLabel("Cari Barang/ID Barang:");
-        JTextField itemField = new JTextField(10); // Kurangi lebar itemField
+        JTextField itemField = new JTextField(10); 
         JLabel qtyLabel = new JLabel("Jumlah:");
         JTextField qtyField = new JTextField(5);
         JLabel priceLabel = new JLabel("Harga:");
-        JTextField priceField = new JTextField(5); // Kurangi lebar priceField
-        priceField.setEnabled(false); // Nonaktifkan field harga
+        JTextField priceField = new JTextField(5); 
+        priceField.setEnabled(false); 
         itemPanel.add(itemLabel);
         itemPanel.add(itemField);
         itemPanel.add(qtyLabel);
@@ -81,7 +79,7 @@ public class AddPurchaseFrame extends JFrame {
         // Panel untuk tombol Tambah
         JPanel buttonPanel = new JPanel(new BorderLayout());
         JButton tambahButton = new JButton("Tambah");
-        buttonPanel.add(tambahButton, BorderLayout.EAST); // Tombol Tambah di pojok kanan bawah
+        buttonPanel.add(tambahButton, BorderLayout.EAST); 
 
         inputPanel.add(buttonPanel, BorderLayout.SOUTH);
 
@@ -102,31 +100,30 @@ public class AddPurchaseFrame extends JFrame {
                 Component component = super.prepareRenderer(renderer, row, column);
                 if (!(renderer instanceof HeaderRenderer)) {
                     ((JComponent) component).setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
-                    if (column != 1) { // Column index of "Nama Barang"
+                    if (column != 1) {
                         ((JLabel) component).setHorizontalAlignment(SwingConstants.CENTER);
                     }
                 }
                 return component;
             }
         };
-        table.setRowHeight(30); // Set tinggi baris
+        table.setRowHeight(30); 
         JScrollPane scrollPane = new JScrollPane(table);
         contentPanel.add(scrollPane, BorderLayout.CENTER);
 
         // Panel untuk subtotal, diskon, dan total
         JPanel bottomPanel = new JPanel(new BorderLayout());
 
-        // Panel untuk subtotal, diskon, dan total
         JPanel subtotalPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         JLabel subtotalLabel = new JLabel("Subtotal:");
-        JTextField subtotalTextField = new JTextField("Rp720.000", 10); // Isi subtotal sesuai dengan data
-        subtotalTextField.setEditable(false); // Jadikan tidak bisa diubah
+        JTextField subtotalTextField = new JTextField("Rp720.000", 10); 
+        subtotalTextField.setEditable(false); 
         JLabel diskonLabel = new JLabel("Diskon:");
-        JTextField diskonTextField = new JTextField("Rp0", 10); // Isi diskon dengan 0
-        diskonTextField.setEditable(false); // Jadikan tidak bisa diubah
+        JTextField diskonTextField = new JTextField("Rp0", 10); 
+        diskonTextField.setEditable(false); 
         JLabel totalLabel = new JLabel("Total:");
-        JTextField totalTextField = new JTextField("Rp720.000", 10); // Isi total sesuai dengan data
-        totalTextField.setEditable(false); // Jadikan tidak bisa diubah
+        JTextField totalTextField = new JTextField("Rp720.000", 10); 
+        totalTextField.setEditable(false); 
         subtotalPanel.add(subtotalLabel);
         subtotalPanel.add(subtotalTextField);
         subtotalPanel.add(diskonLabel);
@@ -149,7 +146,6 @@ public class AddPurchaseFrame extends JFrame {
 
         contentPanel.add(bottomPanel, BorderLayout.SOUTH);
 
-        // Menambahkan contentPanel ke dalam mainPanel
         mainPanel.add(contentPanel, BorderLayout.CENTER);
 
         add(mainPanel);
